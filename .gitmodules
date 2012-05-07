@@ -19,3 +19,6 @@
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
 	url = http://github.com/tpope/vim-surround
+[submodule "vim/bundle/ri"]
+	path = vim/bundle/ri
+	url = http://github.com/danchoi/ri.vim
