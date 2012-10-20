@@ -9,13 +9,14 @@
 dir=~/.dotfiles                    
 
 # list of files/folders to symlink in homedir
-files="vimrc vim irbrc tmux.conf" 
+files="dircolors vimrc vim irbrc tmux.conf" 
 
 # change to the dotfiles directory
 cd $dir
 
 # Create symlink
 for file in $files; do
+    mv ~/.$file /tmp
     ln -s $dir/$file ~/.$file
     echo -e "Symlink ->  \033[38;5;148m$file\033[39m"
 done
