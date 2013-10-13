@@ -1,8 +1,8 @@
-set nocompatible
-
-call pathogen#infect()
+" Pathogen config
+execute pathogen#infect()
 filetype plugin indent on
 
+" Regular house keeping
 syntax on
 set tabstop=2
 set shiftwidth=2
@@ -15,10 +15,14 @@ set smartindent
 set tabpagemax=15
 set background=dark
 
-" Key Mapping
+" Key mappings
 inoremap jj <ESC>
-let mapleader = ","
-nmap <silent> <F3> :NERDTreeToggle<CR>
-nmap <silent> ,w  <C-w>
-nmap <silent> ,< <C-w>h
-nmap <silent> ,> <C-w>l
+let mapleader=","
+nmap <silent> <leader>w <C-w>
+nmap <silent> <leader>< <C-w>h
+nmap <silent> <leader>> <C-w>l
+
+" vimrc and gvimrc shortcuts
+nmap <F2> :source $MYVIMRC<CR>
+map <leader>vimrc :tabe ~/.vimrc<CR>
+map <leader>gvimrc :tabe ~/.gvimrc<CR>
