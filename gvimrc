@@ -1,7 +1,3 @@
-" Solarized settings
-set background=light
-colorscheme solarized
-
 " GUI font
 set guifont=Consolas:h11
 
