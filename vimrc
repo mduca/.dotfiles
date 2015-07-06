@@ -24,6 +24,7 @@ nmap <silent> <leader>> <C-w>l
 
 " NERDTree binding
 map <F3> :NERDTreeToggle<CR>
+map <leader>t :NERDTreeToggle<CR>
 
 
 " vimrc and gvimrc shortcuts
