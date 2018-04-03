@@ -1,6 +1,28 @@
-" Pathogen config
-execute pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" NerdTree
+Plugin 'scrooloose/nerdtree'
+" vim-surround
+Plugin 'tpope/vim-surround'
+" vim-ruby
+Plugin 'vim-ruby/vim-ruby'
+
+call vundle#end()
 filetype plugin indent on
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
 
 " Regular house keeping
 syntax on
