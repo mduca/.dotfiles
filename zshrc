@@ -4,11 +4,41 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/michael/.oh-my-zsh"
 
+export PROD_REDIS="cm-prod.redis.cache.windows.net"
+export PROD_REDIS_AUTH="sxOxJ1sSsUoxY6wotw+To5OdXDKkaeSV4pEGIwjfqz0="
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+
+## Functions
+#
+function azvmid() {
+  az vm list --query "[?name=='$1'].{id:id,name:name}" --out tsv 
+}
+
+function azvmdel() {
+  az vm delete --ids $(azvmid $1 | awk '{print $1}')
+}
+
+function azvmcreate() {
+az vm create --resource-group "prod-redis-rg"  --name $1  --image "Canonical:UbuntuServer:18.04-LTS:latest"  --ssh-key-value /Users/michael/.ssh/ops-azure.pub  --authentication-type ssh  --custom-data /Users/michael/cloud-init.txt  --nsg $(az network nsg list --query "[?name=='prod-redis-nsg'].{id:id}" --out tsv)  --size Standard_$2 
+}
+
+#set history size
+export HISTSIZE=10000
+#save history after logout
+export SAVEHIST=10000
+#history file
+export HISTFILE=~/.zhistory
+#append into history file
+setopt INC_APPEND_HISTORY
+#save only one command if 2 common are same and consistent
+setopt HIST_IGNORE_DUPS
+#add timestamp for each entry
+setopt EXTENDED_HISTORY 
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -101,3 +131,9 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/michael/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/michael/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/michael/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/michael/google-cloud-sdk/completion.zsh.inc'; fi
